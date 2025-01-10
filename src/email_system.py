@@ -16,7 +16,7 @@ def send_email(data):
         email["to"] = os.environ["TO_EMAIL"]
         email["subject"] = data["subject"]
 
-        msg: str = f"{data["message"]}\n\n\n-CONTACT INFO-\nName: {data["name"]}\nEmail: {data["email"]}"
+        msg: str = f'{data["message"]}\n\n\n-CONTACT INFO-\nName: {data["name"]}\nEmail: {data["email"]}'
 
         email.set_content(msg)
 
