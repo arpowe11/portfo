@@ -1,3 +1,0 @@
-Format: email,subject,message
-t@t.com,ttt,ttsdgfggh
-powellalex@gmail.com,test,peeeeeeennnenenenenenenene

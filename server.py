@@ -1,3 +1,16 @@
+#
+# Description: Server side code for my web portfolio
+# Author: Alexander Powell
+# Version: v1.2
+# Dependencies: See "requirements.txt" file 
+#
+
+# TODO: Add doc comments to all functions
+# TODO: Fix the way the data base for the emails works
+# TODO: Make email system
+
+
+
 from flask import (
     Flask, 
     render_template, 
@@ -6,12 +19,16 @@ from flask import (
     redirect
 )
 
-import csv
+from dotenv import load_dotenv, find_dotenv
+from src import email_system
 
-DATABASE_PATH: str = "./database.txt"
-DATABASE2_PATH: str = "./database.csv"
+import csv
+import os
+
 
 app = Flask(__name__)
+
+load_dotenv(find_dotenv(), override=True)
 
 
 @app.route("/")
@@ -24,21 +41,17 @@ def web_pages(page_name: str):
     return render_template(page_name)
 
 
-def write_to_file(data):
-    with open(DATABASE_PATH, mode='a') as database:
-        email = data["email"]
-        subject = data["subject"]
-        message = data["message"]
-        database.write(f"\n{email},{subject},{message}")
-
-
 def write_to_csv(data):
-    with open(DATABASE2_PATH, mode='a', newline="") as database2:
+    with open(os.environ["DATABASE_PATH"], mode='a', newline="") as database:
+        csv_writer = csv.writer(database, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+
+        name = data["name"]
         email = data["email"]
         subject = data["subject"]
         message = data["message"]
-        csv_writer = csv.writer(database2, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-        csv_writer.writerow([email,subject,message])
+
+        csv_writer.writerow([name,email,subject,message])
+        email_system.send_email(data=data)
 
 
 @app.route("/submit_form", methods=["POST", "GET"])
@@ -48,11 +61,12 @@ def submit_form():
             data = request.form.to_dict()
             write_to_csv(data)
             return redirect("/thankyou.html")
-        except:
-            return "Did not save to the database"
-    return "something went wrong, try again"
+        except Exception as err:
+            print(f"Error: {err}")
+            return '<h1 style="text-align: center">Oops... Looks like something went wrong.</h1>'
+    return '<h1 style="text-align: center">Oops... Looks like something went wrong, try again.</h1>'
      
 
 
 if __name__ == "__main__":
-    app.run(debug=True, port=5000)
+    app.run(debug=True, port=5002)
