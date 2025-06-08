@@ -14,20 +14,15 @@ This portfolio was built to:
 - Share my technical skills and contact information
 
 ## 🚀 Tech Stack
-- **Frontend:** HTML, CSS, JavaScript, Bootstrap
-- **Backend Projects Featured:** Python, Django, Flask, SQL
-- **Other Tools:** Git, GitHub, VSCode, Canva, Photoshop
+- **Frontend:** HTML, CSS, JavaScript, Mashup Templates
+- **Backend Projects Featured:** Python, Flask
+- **Other Tools:** Git, GitHub, VSCode, PyCharm, Canva
 
 ## 🧠 Skills Highlighted
 - 7+ years of Python programming & web management
 - Backend development with Django and Flask
 - API integrations, automation tools, WordPress custom tooling
 - Strong foundations in cybersecurity & software engineering
-
-## 📬 Contact
-- 📧 Email: your.email@example.com  
-- 🧑‍💼 LinkedIn: [linkedin.com/in/yourprofile](https://linkedin.com/in/yourprofile)  
-- 🌍 Website: [your-portfolio-link.com](https://your-portfolio-link.com)
 
 ---
 
